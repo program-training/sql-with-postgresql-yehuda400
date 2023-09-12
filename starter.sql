@@ -1,0 +1,56 @@
+--SELECT * FROM products;
+--1
+--SELECT product_id,product_name,Category_ID FROM Products WHERE unit_price > 50;
+--2
+--SELECT * FROM customers WHERE country = 'Germany';
+--3
+--SELECT * FROM orders WHERE customer_id = 'CHOPS';
+--4
+--SELECT Customers.Customer_ID, Customers.Contact_Name, FLOOR(SUM(Order_Details.Quantity * (Order_Details.Unit_Price * (1 - Order_Details.Discount))) AS TotalOrdersWithDiscount)
+-- FROM Customers
+-- JOIN Orders ON Customers.Customer_ID = Orders.Customer_ID
+-- JOIN Order_Details ON Orders.Order_ID = Order_Details.Order_ID
+-- GROUP BY Customers.Customer_ID, Customers.Contact_Name
+-- ORDER BY TotalOrdersWithDiscount DESC;
+--5
+-- SELECT * FROM products 
+--6
+-- SELECT * FROM employees WHERE birth_date < '1960-01-01';
+--7
+-- SELECT * FROM products WHERE units_in_stock = 0
+--8
+-- SELECT AVG(unit_price)  FROM products
+--9 אחזר את הסכום הכולל שנרוויח ממוצר מסוים (לדוגמה, ProductID 7) בהתבסס על כמות ההזמנות ומחיר היחידה. מטבלת OrderDetails
+-- select product_id, sum(Quantity * (Unit_Price * (1 - Order_Details.Discount)) )
+-- AS TotalOrderIncomeWithDiscount 
+-- from order_details
+-- where product_id = 57 
+-- group by product_id
+--10
+-- SELECT COUNT(category_id) AS numberOfCaegorys FROM products
+--11
+-- SELECT * FROM products WHERE discontinued = 1
+--12 אחזר את כמות ההזמנות משנת 1997 חפשו על YEAR
+-- select COUNT(order_id) FROM orders WHERE order_date > '1997-01-01'
+--13 אחזרו את כל הלקוחות שהתואר - ContactTitle - שלהם הוא Owner או CEO חפשו על IN
+-- SELECT * FROM customers WHERE contact_title IN ('Owner', 'CEO')
+--14אחזרו את המוצר היקר ביותר 
+-- SELECT MAX(unit_price) FROM products
+--15אחזרו את ממוצע גיל העובדים.
+--??
+--16 אחזרו את כל הלקוחות שמספר הטלפון שלהם מכיל 123. קראו על LIKE
+-- SELECT * FROM customers WHERE phone LIKE '%123%'
+--17 אחזרו את כל המוצרים שיש להם פחות מ 10 יחידות במלאי ועדיין מסופקים
+-- SELECT * FROM products WHERE discontinued = 0 AND units_in_stock > 10
+--18אחזרו את המחיר המקסימלי כ HighestPrice והמחיר המינימלי כ LowestPrice 
+-- SELECT MIN(unit_price), MAX(unit_price) FROM products
+--19 אחזר את כל ההזמנות מהתאריך 05-05-1997
+-- SELECT * FROM orders WHERE order_date > '1997-05-05'
+--20 אחזר טבלת מוצר וכמות ליחידה
+-- SELECT quantity_per_unit FROM products
+--21  כתוב שאילתה כדי לקבל רשימת מוצרים (מזהה, שם, מחיר יחידה) במחיר גבוה מהממוצע.
+-- SELECT ProductName, UnitPrice FROM Products WHERE UnitPrice > (
+--     SELECT AVG(UnitPrice) FROM Products
+-- );
+--22 אחזר את מספר העובדים מכל עיר
+-- select count(employee_id) as numOfEmployees, country from employees group by country
